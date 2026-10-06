@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const review = require("./review");
 const Schema = mongoose.Schema;
 
 const listingSchema = new Schema({
@@ -27,7 +28,50 @@ const listingSchema = new Schema({
   location: String,
 
   country: String,
+
+  reviews:[{
+    type:Schema.Types.ObjectId,
+    ref: "Review"
+  }],
+
+  owner:{
+    type: Schema.Types.ObjectId,
+    ref:"User",
+  },
+
+ geometry: {
+    type: {
+        type: String,
+        enum: ["Point"],
+        required: true
+    },
+    coordinates: {
+        type: [Number],
+        required: true
+    }
+},
+
+category: {
+    type: String,
+    enum: [
+        "Farms",
+        "Rooms",
+        "Amazing views",
+        "Iconic cities",
+        "Trending",
+        "Amazing pools",
+        "Beach",
+        "Cabins",
+        "OMG!",
+        "Lakefront"
+    ]
+}
+
 });
+   
+
+
+
 
 const Listing = mongoose.model("Listing", listingSchema);
 

@@ -3,7 +3,7 @@
     <div class = "row">
       <div class = "col-8 offset-2">
     <h3>Create a New Listing</h3>
-    <form method="POST" action="/listings" novalidate class = "needs-validation">
+    <form method="POST" action="/listings" novalidate class = "needs-validation" enctype="multipart/form-data">
      <div class = "mb-3"> 
       <label for = "title" class ="form-label ">Title</label>
       <input name="listing[title]" placeholder="enter title" type="text" class = "form-control" required/>
@@ -19,17 +19,19 @@
       ></textarea>
       <div class = "invalid-feedback">Enter valid description</div>
        </div>
-    <div class = "mb-3">
-      <label for ="image" class = "form-label">Image</label>
-      <input
-        name="listing[image][url]"
-        placeholder="enter image URL/Link"
-        type="text"
-        class = "form-control"
-        required
-      />
-      <div class = "invalid-feedback">give image url </div>
-      </div>
+    
+      <div class="mb-3">
+    <label for="image" class="form-label">Upload Image</label>
+
+    <input
+        name="image"
+        type="file"
+        class="form-control"
+    />
+
+    <div class="invalid-feedback">Upload Image</div>
+</div>
+
       <div class="row">
         <div class = "mb-3 col-8">
       <label for ="price" class = "form-label" required>Price</label>
@@ -54,10 +56,37 @@
       />
             <div class = "invalid-feedback"> Enter valid location</div>
    </div>
+   <div class="mb-3">
+    <label for="category" class="form-label">
+        Category
+    </label>
+
+    <select
+        name="listing[category]"
+        id="category"
+        class="form-select"
+        required
+    >
+        <option value="">Select a category</option>
+        <option value="Farms">Farms</option>
+        <option value="Rooms">Rooms</option>
+        <option value="Amazing views">Amazing views</option>
+        <option value="Iconic cities">Iconic cities</option>
+        <option value="Trending">Trending</option>
+        <option value="Amazing pools">Amazing pools</option>
+        <option value="Beach">Beach</option>
+        <option value="Cabins">Cabins</option>
+        <option value="OMG!">OMG!</option>
+        <option value="Lakefront">Lakefront</option>
+    </select>
+</div>
+<br>
       <button class = 'btn btn-dark add-btn'>Add</button>
     </form>
     <br><br>
     </div>
+
+    
     </div>  
-    <script src="/js/script.js" ></script>
+   
 

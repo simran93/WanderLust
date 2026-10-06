@@ -17,3 +17,75 @@
       }, false)
     })
 })()
+
+const filterBtn = document.querySelector("#filterBtn");
+const filterBox = document.querySelector("#filterBox");
+
+const minPrice = document.querySelector("#minPrice");
+const maxPrice = document.querySelector("#maxPrice");
+
+const applyFilter = document.querySelector("#applyFilter");
+const clearFilter = document.querySelector("#clearFilter");
+
+
+// FILTER BOX OPEN / CLOSE
+
+filterBtn.addEventListener("click", () => {
+
+    if (filterBox.style.display === "block") {
+        filterBox.style.display = "none";
+    } else {
+        filterBox.style.display = "block";
+    }
+
+});
+
+
+// APPLY FILTER
+
+applyFilter.addEventListener("click", () => {
+
+    const min = Number(minPrice.value) || 0;
+    const max = Number(maxPrice.value) || Infinity;
+
+    const listings = document.querySelectorAll(".list-links");
+
+    listings.forEach((listing) => {
+
+        const price = Number(listing.dataset.price);
+
+        if (price >= min && price <= max) {
+
+            listing.style.display = "";
+
+        } else {
+
+            listing.style.display = "none";
+
+        }
+
+    });
+
+    filterBox.style.display = "none";
+
+});
+
+
+// CLEAR FILTER
+
+clearFilter.addEventListener("click", () => {
+
+    minPrice.value = "";
+    maxPrice.value = "";
+
+    const listings = document.querySelectorAll(".list-links");
+
+    listings.forEach((listing) => {
+
+        listing.style.display = "";
+
+    });
+
+    filterBox.style.display = "none";
+
+});

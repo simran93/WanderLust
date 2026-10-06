@@ -1,37 +1,166 @@
 <% layout("/layouts/boilerplate") %>
 
-<body>
-  <h3>All Listings</h3>
+<%= success %>
 
-  <div class="row row-cols-lg-4 row-cols-md-2 row-cols-sm-1">
+<div class="wl-category-bar">
+
+    <!-- CATEGORIES -->
+
+    <div class="wl-categories">
+
+        <a href="/listings/category/Farms" class="wl-category">
+            <i class="fa-solid fa-tractor"></i>
+            <span>Farms</span>
+        </a>
+
+        <a href="/listings/category/Rooms" class="wl-category">
+            <i class="fa-solid fa-bed"></i>
+            <span>Rooms</span>
+        </a>
+
+        <a href="/listings/category/Amazing%20views" class="wl-category">
+            <i class="fa-solid fa-image"></i>
+            <span>Amazing views</span>
+        </a>
+
+        <a href="/listings/category/Iconic%20cities" class="wl-category">
+            <i class="fa-solid fa-city"></i>
+            <span>Iconic cities</span>
+        </a>
+
+        <a href="/listings/category/Trending" class="wl-category">
+            <i class="fa-solid fa-fire"></i>
+            <span>Trending</span>
+        </a>
+
+        <a href="/listings/category/Amazing%20pools" class="wl-category">
+            <i class="fa-solid fa-water"></i>
+            <span>Amazing pools</span>
+        </a>
+
+        <a href="/listings/category/OMG!" class="wl-category">
+            <i class="fa-solid fa-face-surprise"></i>
+            <span>OMG!</span>
+        </a>
+
+        <a href="/listings/category/Lakefront" class="wl-category">
+            <i class="fa-solid fa-tree"></i>
+            <span>Lakefront</span>
+        </a>
+
+    </div>
+
+
+    <!-- RIGHT SIDE -->
+
+    <div class="wl-category-controls">
+
+        <!-- FILTER BUTTON -->
+
+        
+
+
+        <!-- FILTER BOX -->
+
+       <button type="button" class="wl-filter" id="filterBtn">
+    <i class="fa-solid fa-sliders"></i>
+    Filters
+</button>
+
+<div id="filterBox" class="filter-box">
+
+    <h5>Price range</h5>
+
+    <div class="price-inputs">
+
+        <input
+            type="number"
+            id="minPrice"
+            placeholder="Min price"
+            min="0"
+        >
+
+        <input
+            type="number"
+            id="maxPrice"
+            placeholder="Max price"
+            min="0"
+        >
+
+    </div>
+
+    <button type="button" id="applyFilter" class="apply-filter">
+        Apply
+    </button>
+
+    <button type="button" id="clearFilter" class="clear-filter">
+        Clear
+    </button>
+
+</div>
+
+        <!-- TAX SWITCH -->
+
+        <div class="wl-tax">
+
+            <span>Display total before taxes</span>
+
+            <label class="wl-switch">
+
+                <input type="checkbox">
+
+                <span class="wl-slider"></span>
+
+            </label>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- LISTINGS -->
+
+<div class="row row-cols-lg-4 row-cols-md-2 row-cols-sm-1">
 
     <% for(let listing of allListings) { %>
 
-      <a href="/listings/<%= listing._id %>" class="list-links">
+        <a 
+            href="/listings/<%= listing._id %>" 
+            class="list-links"
+            data-price="<%= listing.price %>"
+        >
 
-        <div class="card">
-          <img 
-            src="<%= listing.image.url %>" 
-            class="card-img-top" 
-            style="height: 20rem"
-            alt="image"
-          >
-          <div class="card-img-overlay">
+            <div class="card-listing">
 
-  </div>
-            
-          <div class="card-body">
-            <p class="card-text">
-              <b><%= listing.title %></b>
-              <br>
-             &#8377; <%= listing.price != null ? listing.price.toLocaleString("en-IN") : "Price not available" %>/night
-            </p>
-          </div>
-        </div>
+                <img 
+                    src="<%= listing.image.url %>" 
+                    class="card-img-top"
+                    style="height: 20rem"
+                    alt="image"
+                >
 
-      </a>
+                <div class="card-body">
+
+                    <p class="card-text">
+                        <b><%= listing.title %></b>
+                        <br>
+
+                        &#8377;
+                        <%= listing.price != null
+                            ? listing.price.toLocaleString("en-IN")
+                            : "Price not available"
+                        %>/night
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </a>
 
     <% } %>
 
-  </div>
-</body>
+</div>
